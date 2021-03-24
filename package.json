@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "boilerplate",
   "main": "index.js",
+  "engine": {
+    "node": "15.11.0",
+    "npm": "7.6.0"
+  },
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js"

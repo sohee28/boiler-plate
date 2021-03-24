@@ -82,4 +82,8 @@ app.post("/api/user/login", (req, res) => {
   });
 });
 
-app.listen(5000);
+const port = process.env.PORT || 5000; //port set by heroku - only prod mode
+
+app.listen(port, () => {
+  console.log(`Server running at ${port}`);
+});

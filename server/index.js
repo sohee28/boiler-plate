@@ -24,15 +24,19 @@ app.get("/", (req, res) => {
   return res.json({ hello: "I am deploying application" });
 });
 
+
+//role 1 = admin, role 0=normal user
 app.get("/api/user/auth", auth, (req, res) => {
   //only authenticated user can access - middelware
   res.status(200).json({
     _id: req._id,
+    isAdmin: req.user.role === 0 ? false : true,
     isAuth: true,
     email: req.user.email,
     name: req.user.name,
     lastname: req.user.lastname,
     role: req.user.role,
+    image: req.user.image,
   });
 });
 
@@ -81,7 +85,7 @@ app.post("/api/user/login", (req, res) => {
       res
         .cookie("auth_check", user.token) //put token in the cookie
         .status(200)
-        .json({ loginSuccess: true });
+        .json({ loginSuccess: true, userId: user._id });
     });
   });
 });
